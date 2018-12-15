@@ -137,7 +137,12 @@ module.exports = function (options) {
 
         var footer = filter([ breaking, issues ]).join('\n\n');
 
-        commit(head + '\n\n' + body + '\n\n' + footer);
+        try {
+          commit(head + '\n\n' + body + '\n\n' + footer);
+        } catch(e){
+          console.log('Commit Error', e);
+          commit(head + '\n\n' + body + '\n\n' + footer);
+        }
       });
     }
   };
