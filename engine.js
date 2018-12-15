@@ -135,8 +135,14 @@ module.exports = function (options) {
         var issues = answers.issues ? wrap(answers.issues, wrapOptions) : '';
 
         var footer = filter([ breaking, issues ]).join('\n\n');
-
-        commit(head + '\n\n' + body + '\n\n' + footer);
+        console.log('For debug purposes will remove later:')
+        console.log(head + '\n\n' + body + '\n\n' + footer);
+        try{
+          commit(head + '\n\n' + body + '\n\n' + footer);
+        } catch(e){
+          console.log(e);
+          commit(head + '\n\n' + body + '\n\n' + footer);
+        }
       });
     }
   };
