@@ -118,12 +118,12 @@ module.exports = function (options) {
         scope = scope ? '(' + answers.scope.trim() + ')' : '';
 
         // Add a bracket and space if there is a Jira ticket
-        if(answers.jira){
-          answers.jira = '[' + answers.jira + '] ';
-        }
+        console.log(answers);
+        var jira = answers.jira.trim();
+        jira = jira ? '[' + answers.jira.trim() + '] ' : '';
 
         // Hard limit this line
-        var head = (answers.jira + answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
+        var head = (jira + answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
 
         // Wrap these lines at 100 characters
         var body = wrap(answers.body, wrapOptions);
@@ -137,6 +137,7 @@ module.exports = function (options) {
 
         var footer = filter([ breaking, issues ]).join('\n\n');
 
+        console.log(head + '\n\n' + body + '\n\n' + footer);
         try {
           commit(head + '\n\n' + body + '\n\n' + footer);
         } catch(e){

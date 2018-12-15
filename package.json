@@ -1,6 +1,6 @@
 {
   "name": "@videoamp-private/cz-videoamp-conventional-changelog",
-  "version": "0.0.0-semantically-released.0",
+  "version": "0.0.0-semantically-released.1",
   "description": "VideoAmp commitizen adapter following the conventional-changelog format including Jira ticket.",
   "publishConfig": {
     "registry": "https://videoamp.jfrog.io/videoamp/api/npm/cz-videoamp-conventional-changelog"
@@ -9,7 +9,7 @@
   "scripts": {
     "commit": "git-cz",
     "test": "echo 'Tests need to be setup!'",
-    "semantic-release": "semantic-release && yarn publish"
+    "semantic-release": "semantic-release && npm publish"
   },
   "homepage": "https://github.com/VideoAmp/cz-videoamp-conventional-changelog",
   "repository": {
