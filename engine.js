@@ -50,6 +50,12 @@ module.exports = function (options) {
       // collection library if you prefer.
       cz.prompt([
         {
+          type: 'input',
+          name: 'jira',
+          message: 'Jira Ticket Reference(Optional -  e.g. VAMP-123):\n',
+          default: options.defaultJira
+        },
+        {
           type: 'list',
           name: 'type',
           message: 'Select the type of change that you\'re committing:',
@@ -111,8 +117,13 @@ module.exports = function (options) {
         var scope = answers.scope.trim();
         scope = scope ? '(' + answers.scope.trim() + ')' : '';
 
+        // Add a bracket and space if there is a Jira ticket
+        if(answers.jira){
+          answers.jira = '[' + answers.jira + '] ';
+        }
+
         // Hard limit this line
-        var head = (answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
+        var head = (answers.jira + answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
 
         // Wrap these lines at 100 characters
         var body = wrap(answers.body, wrapOptions);

@@ -5,6 +5,7 @@ var conventionalCommitTypes = require('conventional-commit-types');
 
 module.exports = engine({
   types: conventionalCommitTypes.types,
+  defaultJira: process.env.CZ_JIRA,
   defaultType: process.env.CZ_TYPE,
   defaultScope: process.env.CZ_SCOPE,
   defaultSubject: process.env.CZ_SUBJECT,
