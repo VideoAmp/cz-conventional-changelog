@@ -11,6 +11,10 @@ var filter = function(array) {
   });
 };
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // This can be any kind of SystemJS compatible module.
 // We use Commonjs here, but ES6 or AMD would do just
 // fine.
@@ -122,7 +126,8 @@ module.exports = function (options) {
         jira = jira ? '[' + answers.jira.trim() + '] ' : '';
 
         // Hard limit this line
-        var head = (jira + answers.type + scope + ': ' + answers.subject.trim()).slice(0, maxLineWidth);
+        var capitalizedSubject = capitalizeFirstLetter(answers.subject.trim());
+        var head = (jira + answers.type + scope + ': ' + capitalizedSubject).slice(0, maxLineWidth);
 
         // Wrap these lines at 100 characters
         var body = wrap(answers.body, wrapOptions);
