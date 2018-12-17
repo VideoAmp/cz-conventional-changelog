@@ -122,7 +122,15 @@ module.exports = function (options) {
         scope = scope ? '(' + answers.scope.trim() + ')' : '';
 
         // Add a bracket and space if there is a Jira ticket
+        var jiraMatcher = /((?!([A-Z0-9a-z]{1,10})-?$)[A-Z]{1}[A-Z0-9]+-\d+)/g;
         var jira = answers.jira.trim();
+        if(jira.length > 0){
+          if(jiraMatcher.test(jira)){
+            console.log('matched');
+          } else {
+            throw new Error('Format of Jira ticket is not correct: e.g. ENG-123, JIRA-456');
+          }
+        }
         jira = jira ? '[' + answers.jira.trim() + '] ' : '';
 
         // Hard limit this line
