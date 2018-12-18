@@ -125,9 +125,8 @@ module.exports = function (options) {
         var jiraMatcher = /((?!([A-Z0-9a-z]{1,10})-?$)[A-Z]{1}[A-Z0-9]+-\d+)/g;
         var jira = answers.jira.trim();
         if(jira.length > 0){
-          if(jiraMatcher.test(jira)){
-            console.log('matched');
-          } else {
+          // Throw an error if the Jira ticket entry doesn't match the expected structure i.e. ABC-123
+          if(!jiraMatcher.test(jira)){
             throw new Error('Format of Jira ticket is not correct: e.g. ENG-123, JIRA-456');
           }
         }
